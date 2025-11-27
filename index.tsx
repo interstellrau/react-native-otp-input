@@ -2,7 +2,7 @@
 import { InputProps, OTPInputViewState } from '@twotalltotems/react-native-otp-input';
 import React, { Component } from 'react'
 import { View, TextInput, TouchableWithoutFeedback, Keyboard, Platform, I18nManager, EmitterSubscription, } from 'react-native'
-import Clipboard from '@react-native-community/clipboard';
+import Clipboard from '@react-native-clipboard/clipboard'
 import styles from './styles'
 import { isAutoFillSupported } from './helpers/device'
 import { codeToArray } from './helpers/codeToArray'
@@ -182,6 +182,7 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
     }
 
     renderOneInputField = (_: TextInput, index: number) => {
+        const { testID } = this.props;
         const { codeInputFieldStyle, codeInputHighlightStyle, secureTextEntry, editable, keyboardType, selectionColor, keyboardAppearance } = this.props
         const { defaultTextFieldStyle } = styles
         const { selectedIndex, digits } = this.state
@@ -189,11 +190,11 @@ export default class OTPInputView extends Component<InputProps, OTPInputViewStat
         const { color: defaultPlaceholderTextColor } = { ...defaultTextFieldStyle, ...codeInputFieldStyle }
         return (
             <View pointerEvents="none" key={index + "view"} testID="inputSlotView">
-                <TextInput
-                    testID="textInput"
+                <TextInput testID={`${testID??"OTP_Input"}_${index}}`}
+                    accessibilityLabel={`${testID??"OTP_Input"}_${index}}`}
                     underlineColorAndroid='rgba(0,0,0,0)'
-                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]}
-                    ref={ref => { this.fields[index] = ref }}
+                    style={selectedIndex === index ? [defaultTextFieldStyle, codeInputFieldStyle, codeInputHighlightStyle] : [defaultTextFieldStyle, codeInputFieldStyle]} 
+                    ref={ref => { this.fields[index] = ref; }} 
                     onChangeText={text => {
                         this.handleChangeText(index, text)
                     }}

@@ -10,6 +10,7 @@
 ![demo.gif](https://s3.ca-central-1.amazonaws.com/tttevents/android.gif)
 
 ## Project Status
+
 This project is not actively maintained anymore. If you’d like to contribute, we encourage you to fork this repository and improve it for the community.
 
 Here are some alternatives you could try:
@@ -25,12 +26,13 @@ or
 
 ## Dependencies
 
-### NOTES: 
-From version 1.3.10: We use @react-native-community/clipboard to handle the clipboard in this package, So you should install @react-native-community/clipboard
+### NOTES:
 
-`npm install --save @react-native-community/clipboard`
+For this package, we've updated it to use @react-native-clipboard/clipboard to handle the clipboard in this package, So you should install @react-native-clipboard/clipboard
+
+`npm install --save @react-native-clipboard/clipboard`
 or
-`yarn add @react-native-community/clipboard`
+`yarn add @react-native-clipboard/clipboard`
 
 ## Basic Usage
 
